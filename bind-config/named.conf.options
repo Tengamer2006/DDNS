@@ -1,0 +1,22 @@
+options {
+        directory "/var/cache/bind";
+
+        listen-on { 127.0.0.1; 192.168.60.10; };
+        listen-on-v6 { none; };
+
+        allow-query { 127.0.0.1; 192.168.60.0/24; };
+        recursion yes;
+
+        dnssec-validation no;
+};
+
+logging {
+    channel update_debug {
+        file "/var/log/named/ddns.log";
+        severity debug 3;
+        print-category yes;
+        print-severity yes;
+        print-time yes;
+    };
+    category update { update_debug; };
+};
